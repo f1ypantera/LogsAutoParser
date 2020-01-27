@@ -1,4 +1,9 @@
-﻿using System;
+﻿using LogsAutoParser.Workflow;
+using System;
+using System.Configuration;
+using LogsAutoParser.Classes;
+using LogsAutoParser.Interfaces;
+using Unity;
 
 namespace LogsAutoParser
 {
@@ -6,7 +11,13 @@ namespace LogsAutoParser
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            IUnityContainer container = new UnityContainer();
+            container.RegisterType<ISettingProvider, SettingProvider>();
+            container.RegisterType<IDataMiner, DataMiner>();
+            container.RegisterType<IResultWriter, ResultWriter>();
+            container.RegisterType<IReader, Reader>();
+            var startFlow = container.Resolve<ProgramWorkflow>();
+            startFlow.Run();
         }
     }
 }
