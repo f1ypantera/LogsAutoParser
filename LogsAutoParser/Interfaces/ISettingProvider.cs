@@ -11,6 +11,5 @@ namespace LogsAutoParser.Interfaces
         string GetLog2();
         string GetLog3();
         string GetLog4();
-        List<string> ListForAnalyze();
     }
 }

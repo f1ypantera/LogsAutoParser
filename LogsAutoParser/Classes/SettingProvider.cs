@@ -34,11 +34,6 @@ namespace LogsAutoParser.Classes
         {
             return log4;
         }
-        public List<string> ListForAnalyze()
-        {
-            List<string> analyzeLogs = new List<string>();
-            return analyzeLogs;
-        }
     }
 }
 

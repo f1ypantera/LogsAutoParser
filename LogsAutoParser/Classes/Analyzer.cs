@@ -39,8 +39,13 @@ namespace LogsAutoParser.Classes
         {
             if ( analyzeLogs[0] == settingProvider.GetLog1())
             {
-                Console.WriteLine("ok");
+                Console.WriteLine("ok1");
             }
+            if (analyzeLogs[1] == settingProvider.GetLog2())
+            {
+                Console.WriteLine("ok2");
+            }
+           
         }
     }
 }
