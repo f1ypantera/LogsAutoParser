@@ -27,6 +27,20 @@ namespace LogsAutoParser.Classes
                 {
                     analyzeLogs.Add(oneString);
                 }
+                if (settingProvider.GetLog2().Contains(oneString))
+                {
+                    analyzeLogs.Add(oneString);
+                }
+                if (settingProvider.GetLog3().Contains(oneString))
+                {
+                    analyzeLogs.Add(oneString);
+                }
+                if (settingProvider.GetLog4().Contains(oneString))
+                {
+                    analyzeLogs.Add(oneString);
+                }
+              
+
             }
             return analyzeLogs;
         }

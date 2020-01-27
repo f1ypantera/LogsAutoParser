@@ -8,5 +8,8 @@ namespace LogsAutoParser.Interfaces
     {
         string GetPathToCatalog();
         string GetLog1();
+        string GetLog2();
+        string GetLog3();
+        string GetLog4();
     }
 }
