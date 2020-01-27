@@ -51,7 +51,10 @@ namespace LogsAutoParser.Classes
         public void DisplayDeepAnalyze()
         {
             Console.WriteLine("\nFile contains deep analyze: ");
-            
+            analyzer.DeepCompareSteps();
+
+
+
         }
     }
 }

@@ -10,6 +10,7 @@ namespace LogsAutoParser.Classes
         private readonly ISettingProvider settingProvider;
         private readonly IReader reader;
         private readonly IDataMiner dataMiner;
+        List<string> analyzeLogs = new List<string>();
         public Analyzer(ISettingProvider settingProvider,IReader reader, IDataMiner  dataMiner)
         {
             this.settingProvider = settingProvider;
@@ -19,7 +20,6 @@ namespace LogsAutoParser.Classes
 
         public IEnumerable<string> AnalyzeSteps()
         {
-            List<string> analyzeLogs = new List<string>();
             var allStringFromFiles = reader.ReadLogsFromFiles(dataMiner.Catalog(settingProvider.GetPathToCatalog()));
             foreach (var oneString in allStringFromFiles)
             {
@@ -30,14 +30,17 @@ namespace LogsAutoParser.Classes
                 {
                    analyzeLogs.Add(oneString);
                 }
-                
             }
+
             return analyzeLogs;
         }
 
         public void DeepCompareSteps()
         {
-
+            if ( analyzeLogs[0] == settingProvider.GetLog1())
+            {
+                Console.WriteLine("ok");
+            }
         }
     }
 }
