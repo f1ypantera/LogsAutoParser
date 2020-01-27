@@ -24,6 +24,7 @@ namespace LogsAutoParser.Workflow
             workFlowReport.DisplayFileNames();
             workFlowReport.DisplayAllStrings();
             workFlowReport.DisplayRequiredStringForAnalyze();
+            workFlowReport.DisplayDeepAnalyze();
         }
     }
 }

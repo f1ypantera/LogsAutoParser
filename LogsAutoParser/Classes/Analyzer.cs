@@ -23,26 +23,21 @@ namespace LogsAutoParser.Classes
             var allStringFromFiles = reader.ReadLogsFromFiles(dataMiner.Catalog(settingProvider.GetPathToCatalog()));
             foreach (var oneString in allStringFromFiles)
             {
-                if (settingProvider.GetLog1().Contains(oneString))
+                if (settingProvider.GetLog1().Contains(oneString) 
+                    || settingProvider.GetLog2().Contains(oneString) 
+                    || settingProvider.GetLog3().Contains(oneString)
+                    || settingProvider.GetLog4().Contains(oneString))
                 {
-                    analyzeLogs.Add(oneString);
+                   analyzeLogs.Add(oneString);
                 }
-                if (settingProvider.GetLog2().Contains(oneString))
-                {
-                    analyzeLogs.Add(oneString);
-                }
-                if (settingProvider.GetLog3().Contains(oneString))
-                {
-                    analyzeLogs.Add(oneString);
-                }
-                if (settingProvider.GetLog4().Contains(oneString))
-                {
-                    analyzeLogs.Add(oneString);
-                }
-              
-
+                
             }
             return analyzeLogs;
+        }
+
+        public void DeepCompareSteps()
+        {
+
         }
     }
 }
