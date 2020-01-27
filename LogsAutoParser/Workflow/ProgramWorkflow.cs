@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using LogsAutoParser.Interfaces;
 using Unity;
 
@@ -9,6 +10,7 @@ namespace LogsAutoParser.Workflow
     public class ProgramWorkflow:IRun
     {
         private readonly IResultWriter workFlowReport;
+        private readonly IAnalyzer analyzer;
 
         [InjectionConstructor]
         public ProgramWorkflow(IResultWriter workFlowReport)
@@ -20,7 +22,8 @@ namespace LogsAutoParser.Workflow
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Start analyzing..");
             workFlowReport.DisplayFileNames();
-            workFlowReport.DisplayStrings();
+            workFlowReport.DisplayAllStrings();
+            workFlowReport.DisplayRequiredStringForAnalyze();
         }
     }
 }

@@ -4,9 +4,8 @@ using System.Text;
 
 namespace LogsAutoParser.Interfaces
 {
-    public interface ISettingProvider
+    public interface IAnalyzer
     {
-        string GetPathToCatalog();
-        string GetLog1();
+        IEnumerable<string> AnalyzeSteps();
     }
 }

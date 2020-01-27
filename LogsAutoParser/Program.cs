@@ -16,6 +16,7 @@ namespace LogsAutoParser
             container.RegisterType<IDataMiner, DataMiner>();
             container.RegisterType<IResultWriter, ResultWriter>();
             container.RegisterType<IReader, Reader>();
+            container.RegisterType<IAnalyzer,Analyzer>();
             var startFlow = container.Resolve<ProgramWorkflow>();
             startFlow.Run();
         }

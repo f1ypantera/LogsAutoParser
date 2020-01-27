@@ -11,12 +11,14 @@ namespace LogsAutoParser.Classes
         private readonly IDataMiner mineData;
         private readonly ISettingProvider settingProvider;
         private readonly IReader reader;
+        private readonly IAnalyzer analyzer;
 
-        public ResultWriter(IDataMiner mineData, ISettingProvider settingProvider,IReader reader)
+        public ResultWriter(IDataMiner mineData, ISettingProvider settingProvider,IReader reader,IAnalyzer analyzer)
         {
             this.mineData = mineData;
             this.settingProvider = settingProvider;
             this.reader = reader;
+            this.analyzer = analyzer;
 
         }
         public void DisplayFileNames()
@@ -28,13 +30,23 @@ namespace LogsAutoParser.Classes
                 Console.WriteLine(fileInf.Name);
             }
         }
-        public void DisplayStrings()
+        public void DisplayAllStrings()
         {
-            Console.WriteLine("\nFile contains strings : ");
+            Console.WriteLine("\nFile contains all strings: ");
             foreach (var s in reader.ReadLogsFromFiles(mineData.Catalog(settingProvider.GetPathToCatalog())))
             {
                 Console.WriteLine(s);
             }
+        }
+
+        public void DisplayRequiredStringForAnalyze()
+        {
+            Console.WriteLine("\nFile contains strings for analyze: ");
+            foreach (var s1 in analyzer.AnalyzeSteps())
+            {
+                Console.WriteLine(s1);
+            }
+
         }
     }
 }
