@@ -28,7 +28,6 @@ namespace LogsAutoParser.Classes
                    analyzeLogs.Add(oneString);
                 }
             }
-
             return analyzeLogs;
         }
     }
