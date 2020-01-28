@@ -7,9 +7,6 @@ namespace LogsAutoParser.Interfaces
     public interface ISettingProvider
     {
         string GetPathToCatalog();
-        string GetLog1();
-        string GetLog2();
-        string GetLog3();
-        string GetLog4();
+        string GetLog();
     }
 }
