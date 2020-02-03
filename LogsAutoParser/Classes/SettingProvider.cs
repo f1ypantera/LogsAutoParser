@@ -9,7 +9,7 @@ namespace LogsAutoParser.Classes
 {
     class SettingProvider:ISettingProvider
     {
-        private readonly string pathToCatalog = ConfigurationManager.AppSettings["pathToCatalog"];
+        private readonly string pathToCatalog = "D:\\Projects\\LogsAutoParser\\Catalog";
         private readonly string log = ConfigurationManager.AppSettings["Log"];
         
         public string GetPathToCatalog()
