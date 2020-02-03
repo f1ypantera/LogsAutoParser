@@ -41,7 +41,7 @@ namespace LogsAutoParser.Classes
 
         public void DisplayRequiredStringForAnalyze()
         {
-            Console.WriteLine("\nFile contains strings for analyze: ");
+            Console.WriteLine("\nAnalyze from App.config: ");
             foreach (var s1 in analyzer.AnalyzeSteps())
             {
                 Console.WriteLine(s1);
@@ -50,8 +50,9 @@ namespace LogsAutoParser.Classes
         }
         public void DisplayDeepAnalyze()
         {
-            Console.WriteLine("\nDeep analyze: ");
-            
+            Console.WriteLine("\nAnalyze with regex (not App config): ");
+            analyzer.AnalyzeWithRegex();
+           
         }
     }
 }

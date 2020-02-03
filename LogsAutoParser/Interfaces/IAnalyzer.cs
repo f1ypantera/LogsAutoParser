@@ -7,5 +7,6 @@ namespace LogsAutoParser.Interfaces
     public interface IAnalyzer
     {
         IEnumerable<string> AnalyzeSteps();
+        void AnalyzeWithRegex();
     }
 }

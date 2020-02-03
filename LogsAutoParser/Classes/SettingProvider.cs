@@ -11,22 +11,15 @@ namespace LogsAutoParser.Classes
     {
         private readonly string pathToCatalog = ConfigurationManager.AppSettings["pathToCatalog"];
         private readonly string log = ConfigurationManager.AppSettings["Log"];
-        List<string> analyzeLogs = new List<string>();
-
+        
         public string GetPathToCatalog()
         {
             return pathToCatalog;
         }
-        public string GetLog()
+        public string GetTemplate()
         {
             return log;
         }
-
-        public List<string> AnalyzedLogs()
-        {
-            return analyzeLogs;
-        }
-
     }
 }
 
