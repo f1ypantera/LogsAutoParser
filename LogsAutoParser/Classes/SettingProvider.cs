@@ -10,15 +10,15 @@ namespace LogsAutoParser.Classes
     class SettingProvider:ISettingProvider
     {
         private readonly string pathToCatalog = "D:\\Projects\\LogsAutoParser\\Catalog";
-        private readonly string log = ConfigurationManager.AppSettings["Log"];
+        private readonly string[] templateStrings = ConfigurationManager.AppSettings["Log"].Split(",");
         
         public string GetPathToCatalog()
         {
             return pathToCatalog;
         }
-        public string GetTemplate()
+        public List<string> GetTemplate()
         {
-            return log;
+            return templateStrings.ToList();
         }
     }
 }

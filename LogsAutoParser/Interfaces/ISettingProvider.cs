@@ -7,6 +7,6 @@ namespace LogsAutoParser.Interfaces
     public interface ISettingProvider
     {
         string GetPathToCatalog();
-        string GetTemplate();
+        List<string> GetTemplate();
     }
 }

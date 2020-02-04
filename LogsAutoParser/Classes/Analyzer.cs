@@ -23,14 +23,17 @@ namespace LogsAutoParser.Classes
         public IEnumerable<string> AnalyzeSteps()
         {
             var allStringFromFiles = reader.ReadLogsFromFiles(dataMiner.Catalog(settingProvider.GetPathToCatalog()));
-            Regex regex1 = new Regex(settingProvider.GetTemplate());
-            foreach (var oneString in allStringFromFiles)
+            foreach (var regexTemplate in settingProvider.GetTemplate())
             {
-                MatchCollection matches = regex1.Matches(oneString);
-                if (matches.Count > 0)
+                Regex regex1 = new Regex(regexTemplate);
+                foreach (var oneString in allStringFromFiles)
                 {
-                    foreach (Match match in matches)
-                        analyzeLogs.Add(match.Value);
+                    MatchCollection matches = regex1.Matches(oneString);
+                    if (matches.Count > 0)
+                    {
+                        foreach (Match match in matches)
+                            analyzeLogs.Add(match.Value);
+                    }
                 }
             }
             return analyzeLogs;
