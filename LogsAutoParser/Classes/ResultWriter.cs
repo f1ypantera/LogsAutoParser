@@ -50,9 +50,7 @@ namespace LogsAutoParser.Classes
         }
         public void DisplayDeepAnalyze()
         {
-            Console.WriteLine("\nAnalyze with regex (not App config): ");
-            analyzer.AnalyzeWithRegex();
-           
+            Console.WriteLine("\nTBD");
         }
     }
 }

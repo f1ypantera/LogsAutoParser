@@ -23,30 +23,17 @@ namespace LogsAutoParser.Classes
         public IEnumerable<string> AnalyzeSteps()
         {
             var allStringFromFiles = reader.ReadLogsFromFiles(dataMiner.Catalog(settingProvider.GetPathToCatalog()));
+            Regex regex1 = new Regex(settingProvider.GetTemplate());
             foreach (var oneString in allStringFromFiles)
             {
-                if (settingProvider.GetTemplate().Contains(oneString))
-                {
-                    analyzeLogs.Add(oneString);
-                }
-            }
-
-            return analyzeLogs;
-        }
-        public void AnalyzeWithRegex()
-        {
-            var allStringFromFiles = reader.ReadLogsFromFiles(dataMiner.Catalog(settingProvider.GetPathToCatalog()));
-            Regex regex = new Regex(@"\w*vad\w*");
-            foreach (var oneString in allStringFromFiles)
-            {
-                MatchCollection matches = regex.Matches(oneString);
+                MatchCollection matches = regex1.Matches(oneString);
                 if (matches.Count > 0)
                 {
                     foreach (Match match in matches)
-                        Console.WriteLine(match.Value);
+                        analyzeLogs.Add(match.Value);
                 }
             }
-                
+            return analyzeLogs;
         }
     }
 }
