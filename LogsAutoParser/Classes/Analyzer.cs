@@ -23,7 +23,7 @@ namespace LogsAutoParser.Classes
         public IEnumerable<string> AnalyzeSteps()
         {
             var allStringFromFiles = reader.ReadLogsFromFiles(dataMiner.Catalog(settingProvider.GetPathToCatalog()));
-            foreach (var regexTemplate in settingProvider.GetTemplate())
+            foreach (var regexTemplate in settingProvider.GetTemplateStringsList())
             {
                 Regex regex1 = new Regex(regexTemplate);
                 foreach (var oneString in allStringFromFiles)
@@ -37,6 +37,11 @@ namespace LogsAutoParser.Classes
                 }
             }
             return analyzeLogs;
+        }
+
+        public void DeepAnalyzer()
+        {
+
         }
     }
 }
