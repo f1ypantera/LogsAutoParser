@@ -51,6 +51,7 @@ namespace LogsAutoParser.Classes
         public void DisplayDeepAnalyze()
         {
             Console.WriteLine("\nTBD");
+            analyzer.DeepAnalyzer();
         }
     }
 }

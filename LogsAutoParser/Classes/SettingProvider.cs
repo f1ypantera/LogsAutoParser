@@ -13,6 +13,7 @@ namespace LogsAutoParser.Classes
         private readonly string templateStrings1 = ConfigurationManager.AppSettings["templateString1"];
         private readonly string templateStrings2 = ConfigurationManager.AppSettings["templateString2"];
         private readonly string templateStrings3 = ConfigurationManager.AppSettings["templateString3"];
+        private readonly string templateStrings4 = ConfigurationManager.AppSettings["templateString4"];
         public string GetPathToCatalog()
         {
             return pathToCatalog;
@@ -24,6 +25,7 @@ namespace LogsAutoParser.Classes
             templateStrings.Add(templateStrings1);
             templateStrings.Add(templateStrings2);
             templateStrings.Add(templateStrings3);
+            templateStrings.Add(templateStrings4);
             return templateStrings.ToList();
         }
     }
