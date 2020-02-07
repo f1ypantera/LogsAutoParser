@@ -41,8 +41,8 @@ namespace LogsAutoParser.Classes
 
         public void DisplayRequiredStringForAnalyze()
         {
-            Console.WriteLine("\nAnalyze from App.config: ");
-            foreach (var s1 in analyzer.AnalyzeSteps())
+            Console.WriteLine("\nAnalyze from App.config:");
+            foreach (var s1 in analyzer.SelectNeedStringsForAnalyze())
             {
                 Console.WriteLine(s1);
             }
@@ -50,8 +50,8 @@ namespace LogsAutoParser.Classes
         }
         public void DisplayDeepAnalyze()
         {
-            Console.WriteLine("\nTBD");
-            analyzer.DeepAnalyzer();
+            Console.WriteLine("\nTest:");
+            analyzer.Test();
         }
     }
 }

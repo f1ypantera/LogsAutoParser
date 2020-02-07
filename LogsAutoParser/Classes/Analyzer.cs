@@ -21,10 +21,10 @@ namespace LogsAutoParser.Classes
             this.dataMiner = dataMiner;
         }
 
-        public IEnumerable<string> AnalyzeSteps()
+        public IEnumerable<string> SelectNeedStringsForAnalyze()
         {
             var allStringFromFiles = reader.ReadLogsFromFiles(dataMiner.Catalog(settingProvider.GetPathToCatalog()));
-            foreach (var regexTemplate in settingProvider.GetTemplateStringsList())
+            foreach (var regexTemplate in settingProvider.GetTemplateStrings())
             {
                 Regex regex = new Regex(regexTemplate);
                 foreach (var oneString in allStringFromFiles)
@@ -40,21 +40,16 @@ namespace LogsAutoParser.Classes
                         }
                         //Console.WriteLine(matches.Count.ToString());
                     }
-
-                    //if (matches.Count == 0)
-                    //{
-                    //    Console.WriteLine("не ок");
-                    //}
                 }
             }
 
             return analyzeLogs;
         }
 
-        public void DeepAnalyzer()
+        public void Test()
         {
             bool flag;
-            foreach (var regexTemplate in settingProvider.GetTemplateStringsList())
+            foreach (var regexTemplate in settingProvider.GetTemplateStrings())
             {
                 flag = false;
                 Regex regex = new Regex(regexTemplate);
@@ -69,71 +64,17 @@ namespace LogsAutoParser.Classes
                         {
                             if (analyzeLogs.Contains(match.Value))
                             {
-                                Console.WriteLine("есть " + match.Value);
+                                Console.WriteLine("Есть " + match.Value);
                             }
 
                         }
                     }
                     if (matches.Count == 0 && ss == "vadym" && regex == regex && flag == false)
                     {
-                        Console.WriteLine(regex);
+                        Console.WriteLine("Нет " + regex);
                     }
-
-                    //Console.WriteLine(matches.Count.ToString());
-
-                    //foreach (Match match in matches)
-                    //{
-                    //    if (analyzeLogs.Contains(match.Value))
-                    //    {
-                    //        Console.WriteLine("есть " + match.Value);
-                    //    }
-                    //    else
-                    //    {
-                    //        Console.WriteLine("нет " + match.Value);
-                    //    }
-                    //}
                 }
             }
-
-
-
-            //foreach (var a in analyzeLogs)
-                //{
-                //    Console.WriteLine(a);
-                //}
-
-            //    List<string> aa = new List<string>() { "vadym" ,"ira" ,"vitalik" };
-            //foreach (var s in aa)
-            //{
-            //    if (analyzeLogs.Contains(s))
-            //    {
-            //        Console.WriteLine("есть "+ s);
-            //    }
-            //    else
-            //    {
-            //        Console.WriteLine("нет " + s);
-            //    }
-            //}
-            
-            
-            //foreach (var regexTemplate in settingProvider.GetTemplateStringsList())
-            //{
-            //    Regex regex = new Regex(regexTemplate);
-            //    foreach (var step in analyzeLogs)
-            //    {
-
-            //        if (regex.IsMatch(step))
-            //        {
-            //            Console.WriteLine("Ok");
-            //        }
-            //        else
-            //        {
-            //            Console.WriteLine("Ne ok");
-            //        }
-            //    }
-
-
-
         }
     }
 }

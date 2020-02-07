@@ -19,7 +19,7 @@ namespace LogsAutoParser.Classes
             return pathToCatalog;
         }
       
-        public List<string> GetTemplateStringsList()
+        public List<string> GetTemplateStrings()
         {
             List<string> templateStrings = new List<string>();
             templateStrings.Add(templateStrings1);
