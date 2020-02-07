@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -48,18 +49,24 @@ namespace LogsAutoParser.Classes
 
         public void TestFindAllStringByConveyorId()
         {
-            var allStringFromFiles = reader.ReadLogsFromFiles(dataMiner.Catalog(settingProvider.GetPathToCatalog()));
-            Regex regex = new Regex(@"\w*20101\w*");
-            foreach (var oneString in allStringFromFiles)
-            {
-                MatchCollection matches = regex.Matches(oneString);
-                if (matches.Count > 0)
+            string writePath = @"D:\\Projects\\LogsAutoParser\\Catalog2\\stringById.txt";
+            var allStringFromFiles =
+                    reader.ReadLogsFromFiles(dataMiner.Catalog(settingProvider.GetPathToCatalog()));
+                Regex regex = new Regex(@"\w*20101\w*");
+                foreach (var oneString in allStringFromFiles)
                 {
-                    foreach (Match match in matches)
-                        Console.WriteLine(match.Value);
+                    MatchCollection matches = regex.Matches(oneString);
+                    if (matches.Count > 0)
+                    {
+                        foreach (Match match in matches)
+                            //  Console.WriteLine(oneString);
+                            using (StreamWriter sw = File.AppendText(writePath))
+                            {
+                                sw.WriteLine(oneString);
+                            }
+                    }
                 }
-
-            }
+            
         }
 
         public void Test()
