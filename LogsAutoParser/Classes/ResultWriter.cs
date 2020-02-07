@@ -30,15 +30,6 @@ namespace LogsAutoParser.Classes
                 Console.WriteLine(fileInf.Name);
             }
         }
-        //public void DisplayAllStrings()
-        //{
-        //    Console.WriteLine("\nFile contains all strings: ");
-        //    foreach (var s in reader.ReadLogsFromFiles(mineData.Catalog(settingProvider.GetPathToCatalog())))
-        //    {
-        //        Console.WriteLine(s);
-        //    }
-        //}
-
         public void DisplayRequiredStringForAnalyze()
         {
             Console.WriteLine("\nAnalyze from App.config:");
