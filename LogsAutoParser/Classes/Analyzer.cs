@@ -64,14 +64,14 @@ namespace LogsAutoParser.Classes
                         {
                             if (analyzeLogs.Contains(match.Value))
                             {
-                                Console.WriteLine("Есть " + match.Value);
+                                Console.WriteLine("Совпало с шаблоном - " + match.Value);
                             }
 
                         }
                     }
                     if (matches.Count == 0 && ss == "vadym" && regex == regex && flag == false)
                     {
-                        Console.WriteLine("Нет " + regex);
+                        Console.WriteLine("Не совпало с шаблоном - " + regex);
                     }
                 }
             }

@@ -10,38 +10,32 @@ namespace LogsAutoParser.Classes
     {
         private readonly IDataMiner mineData;
         private readonly ISettingProvider settingProvider;
-        private readonly IReader reader;
         private readonly IAnalyzer analyzer;
 
         public ResultWriter(IDataMiner mineData, ISettingProvider settingProvider,IReader reader,IAnalyzer analyzer)
         {
             this.mineData = mineData;
             this.settingProvider = settingProvider;
-            this.reader = reader;
             this.analyzer = analyzer;
-
         }
         public void DisplayFileNames()
         {
-            Console.WriteLine("\nFile Names: ");
             foreach (var s in mineData.Catalog(settingProvider.GetPathToCatalog()))
             {
                 FileInfo fileInf = new FileInfo(s);
                 Console.WriteLine(fileInf.Name);
             }
         }
-        public void DisplayRequiredStringForAnalyze()
+        public void DisplaySelectedStringForAnalyze()
         {
-            Console.WriteLine("\nAnalyze from App.config:");
             foreach (var s1 in analyzer.SelectNeedStringsForAnalyze())
             {
                 Console.WriteLine(s1);
             }
 
         }
-        public void DisplayDeepAnalyze()
+        public void Test()
         {
-            Console.WriteLine("\nTest:");
             analyzer.Test();
         }
     }

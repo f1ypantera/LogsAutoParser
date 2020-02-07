@@ -10,8 +10,7 @@ namespace LogsAutoParser.Workflow
     public class ProgramWorkflow:IRun
     {
         private readonly IResultWriter workFlowReport;
-        private readonly IAnalyzer analyzer;
-
+        
         [InjectionConstructor]
         public ProgramWorkflow(IResultWriter workFlowReport)
         {
@@ -19,11 +18,22 @@ namespace LogsAutoParser.Workflow
         }
         public void Run()
         {
-            Console.ForegroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Start analyzing..");
+            Console.WriteLine("\nFile Names: ");
+            Console.ResetColor();
             workFlowReport.DisplayFileNames();
-            workFlowReport.DisplayRequiredStringForAnalyze();
-            workFlowReport.DisplayDeepAnalyze();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("\nSelected strings from log:");
+            Console.ResetColor();
+            workFlowReport.DisplaySelectedStringForAnalyze();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("\nTest checking:");
+            Console.ResetColor();
+            workFlowReport.Test();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("\n-----------------");
+            Console.ResetColor();
         }
     }
 }
