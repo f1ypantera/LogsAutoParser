@@ -22,7 +22,7 @@ namespace LogsAutoParser.Workflow
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Start analyzing..");
             workFlowReport.DisplayFileNames();
-            workFlowReport.DisplayAllStrings();
+           // workFlowReport.DisplayAllStrings();
             workFlowReport.DisplayRequiredStringForAnalyze();
             workFlowReport.DisplayDeepAnalyze();
         }
