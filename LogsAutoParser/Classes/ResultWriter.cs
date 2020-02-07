@@ -38,5 +38,10 @@ namespace LogsAutoParser.Classes
         {
             analyzer.Test();
         }
+        public void Test2()
+        {
+            Console.WriteLine("Test2");
+            analyzer.TestFindAllStringByConveyorId();
+        }
     }
 }

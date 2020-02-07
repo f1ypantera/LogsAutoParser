@@ -26,7 +26,7 @@ namespace LogsAutoParser.Classes
             var allStringFromFiles = reader.ReadLogsFromFiles(dataMiner.Catalog(settingProvider.GetPathToCatalog()));
             foreach (var regexTemplate in settingProvider.GetTemplateStrings())
             {
-                Regex regex = new Regex(regexTemplate);
+                Regex regex = new Regex(regexTemplate, RegexOptions.Singleline);
                 foreach (var oneString in allStringFromFiles)
                 {
                     MatchCollection matches = regex.Matches(oneString);
@@ -46,13 +46,29 @@ namespace LogsAutoParser.Classes
             return analyzeLogs;
         }
 
+        public void TestFindAllStringByConveyorId()
+        {
+            var allStringFromFiles = reader.ReadLogsFromFiles(dataMiner.Catalog(settingProvider.GetPathToCatalog()));
+            Regex regex = new Regex(@"\w*20101\w*");
+            foreach (var oneString in allStringFromFiles)
+            {
+                MatchCollection matches = regex.Matches(oneString);
+                if (matches.Count > 0)
+                {
+                    foreach (Match match in matches)
+                        Console.WriteLine(match.Value);
+                }
+
+            }
+        }
+
         public void Test()
         {
             bool flag;
             foreach (var regexTemplate in settingProvider.GetTemplateStrings())
             {
                 flag = false;
-                Regex regex = new Regex(regexTemplate);
+                Regex regex = new Regex(regexTemplate, RegexOptions.Singleline);
                 foreach (var ss in analyzeLogs)
                 {
                     MatchCollection matches = regex.Matches(ss);
@@ -69,7 +85,7 @@ namespace LogsAutoParser.Classes
 
                         }
                     }
-                    if (matches.Count == 0 && ss == "vadym" && regex == regex && flag == false)
+                    if (matches.Count == 0 && ss == analyzeLogs.Last() && regex == regex && flag == false)
                     {
                         Console.WriteLine("Не совпало с шаблоном - " + regex);
                     }

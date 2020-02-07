@@ -9,5 +9,6 @@ namespace LogsAutoParser.Interfaces
         void DisplayFileNames();
         void DisplaySelectedStringForAnalyze();
         void Test();
+        void Test2();
     }
 }

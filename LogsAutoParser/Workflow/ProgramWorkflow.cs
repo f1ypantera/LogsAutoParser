@@ -28,11 +28,12 @@ namespace LogsAutoParser.Workflow
             Console.ResetColor();
             workFlowReport.DisplaySelectedStringForAnalyze();
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\nTest checking:");
+            Console.WriteLine("\nTest  checking:");
             Console.ResetColor();
             workFlowReport.Test();
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("\n-----------------");
+            workFlowReport.Test2();
             Console.ResetColor();
         }
     }
