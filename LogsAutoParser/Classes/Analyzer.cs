@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using LogsAutoParser.Interfaces;
 
@@ -24,10 +23,12 @@ namespace LogsAutoParser.Classes
 
         public List<string> AnalyzedLogs()
         {
-            return analyzeLogs;
+            return  analyzeLogs;
         }
         public IEnumerable<string> SelectNeedStringsForAnalyzeById()
         {
+            
+            string writePath = @"D:\\Projects\\LogsAutoParser\\Catalog2\\stringById.txt";
             var pathToStrings = reader.ReadLogsFromFiles(dataMiner.Catalog(settingProvider.GetPathToCatalog()));
             Regex regex = new Regex(settingProvider.GetCartonID());
             foreach (var oneString in pathToStrings)
@@ -38,8 +39,11 @@ namespace LogsAutoParser.Classes
                 {
                     foreach (Match match in matches)
                     {
-                        analyzeLogs.Add(match.Value);
-
+                        // analyzeLogs.Add(match.Value);
+                        using (StreamWriter sw = File.AppendText(writePath))
+                        {
+                            sw.WriteLine(oneString);
+                        }
                     }
                 }
             }
@@ -47,6 +51,7 @@ namespace LogsAutoParser.Classes
         }
         public IEnumerable<string> SelectNeedStringsForAnalyzeByLpn()
         {
+           
             var pathToStrings = reader.ReadLogsFromFiles(dataMiner.Catalog(settingProvider.GetPathToCatalog()));
             Regex regex = new Regex(settingProvider.GetCartonsLpn());
             foreach (var oneString in pathToStrings)
@@ -58,6 +63,7 @@ namespace LogsAutoParser.Classes
                     foreach (Match match in matches)
                     {
                         analyzeLogs.Add(match.Value);
+                       
 
                     }
                 }
@@ -117,29 +123,6 @@ namespace LogsAutoParser.Classes
                 }
             }
         }
-        //public void TestFindAllStringByConveyorId()
-        //{
-        //    string writePath = @"D:\\Projects\\LogsAutoParser\\Catalog2\\stringById.txt";
-        //    var allStringFromFiles =
-        //            reader.ReadLogsFromFiles(dataMiner.Catalog(settingProvider.GetPathToCatalog()));
-        //        Regex regex = new Regex(@"\w*20101\w*");
-        //        foreach (var oneString in allStringFromFiles)
-        //        {
-        //            MatchCollection matches = regex.Matches(oneString);
-        //            if (matches.Count > 0)
-        //            {
-        //                foreach (Match match in matches)
-        //                    //  Console.WriteLine(oneString);
-        //                    using (StreamWriter sw = File.AppendText(writePath))
-        //                    {
-        //                        sw.WriteLine(oneString);
-        //                    }
-        //            }
-        //        }
-
-        //}
-
-
     }
 }
 
