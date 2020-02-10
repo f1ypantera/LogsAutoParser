@@ -24,6 +24,7 @@ namespace LogsAutoParser.Workflow
             Console.ResetColor();
             workFlowReport.DisplayFileNames();
             Console.ForegroundColor = ConsoleColor.Red;
+            workFlowReport.DisplayCheckCriteria();
             Console.WriteLine("\nSelected strings from log:");
             Console.ResetColor();
             workFlowReport.DisplaySelectedStringForAnalyze();

@@ -8,5 +8,7 @@ namespace LogsAutoParser.Interfaces
     {
         string GetPathToCatalog();
         List<string> GetTemplateStrings();
+        string GetCartonID();
+        string GetCartonsLpn();
     }
 }

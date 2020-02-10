@@ -7,7 +7,11 @@ namespace LogsAutoParser.Interfaces
     public interface IAnalyzer
     {
         IEnumerable<string> SelectNeedStringsForAnalyze();
+
+        IEnumerable<string> SelectNeedStringsForAnalyzeById();
+
+        IEnumerable<string> SelectNeedStringsForAnalyzeByLpn();
         //void TestFindAllStringByConveyorId();
-      //  void Test();
+        void DeepAnalyzingLogs();
     }
 }

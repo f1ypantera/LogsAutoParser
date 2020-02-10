@@ -10,6 +10,8 @@ namespace LogsAutoParser.Classes
     class SettingProvider:ISettingProvider
     {
         private readonly string pathToCatalog = ConfigurationManager.AppSettings["pathToCatalog"];
+        private readonly string CartonID = ConfigurationManager.AppSettings["cartonId"];
+        private readonly string LpnCartons = ConfigurationManager.AppSettings["lpnCartons"];
         private readonly List<string> templateStrings = ConfigurationManager.GetSection("templateString") as List<string>;
         public string GetPathToCatalog()
         {
@@ -19,6 +21,14 @@ namespace LogsAutoParser.Classes
         public List<string> GetTemplateStrings()
         {
             return templateStrings.ToList();
+        }
+        public string GetCartonID()
+        {
+            return CartonID;
+        }
+        public string GetCartonsLpn()
+        {
+            return LpnCartons;
         }
     }
 }
