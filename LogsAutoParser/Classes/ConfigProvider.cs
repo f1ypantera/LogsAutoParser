@@ -5,9 +5,9 @@ using System.Xml;
 
 namespace LogsAutoParser
 {
-    public class BackupDirectoriesSection : IConfigurationSectionHandler
+    public class ConfigProvider : IConfigurationSectionHandler
     {
-        public string location { get; set; }
+        public string templateRegex { get; set; }
         public object Create(object parent, object configContext, XmlNode section)
         {
             List<string> myConfigObject = new List<string>();
@@ -16,7 +16,7 @@ namespace LogsAutoParser
             {
                 foreach (XmlAttribute attrib in childNode.Attributes)
                 {
-                    myConfigObject.Add(location = attrib.Value);
+                    myConfigObject.Add(templateRegex = attrib.Value);
                 }
             }
             return myConfigObject;
