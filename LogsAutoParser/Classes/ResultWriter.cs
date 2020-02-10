@@ -36,12 +36,12 @@ namespace LogsAutoParser.Classes
         }
         public void Test()
         {
-            analyzer.Test();
+         //   analyzer.Test();
         }
         public void Test2()
         {
             Console.WriteLine("Test2");
-            analyzer.TestFindAllStringByConveyorId();
+          //  analyzer.TestFindAllStringByConveyorId();
         }
     }
 }
