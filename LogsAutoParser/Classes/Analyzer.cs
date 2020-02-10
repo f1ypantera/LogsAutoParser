@@ -22,6 +22,10 @@ namespace LogsAutoParser.Classes
             this.dataMiner = dataMiner;
         }
 
+        public List<string> AnalyzedLogs()
+        {
+            return analyzeLogs;
+        }
         public IEnumerable<string> SelectNeedStringsForAnalyzeById()
         {
             var pathToStrings = reader.ReadLogsFromFiles(dataMiner.Catalog(settingProvider.GetPathToCatalog()));

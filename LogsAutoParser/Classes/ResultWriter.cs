@@ -28,7 +28,7 @@ namespace LogsAutoParser.Classes
             }
         }
 
-        public string DisplayCheckCriteria()
+        public void DisplayCheckCriteria()
         {
             Console.WriteLine("\nPlease,select 1-byID or 2-byLpn or 3-Overall strings");
             string selection = Console.ReadLine();
@@ -41,35 +41,29 @@ namespace LogsAutoParser.Classes
             {
                 case "1":
                     Console.WriteLine("byID");
+                    analyzer.SelectNeedStringsForAnalyzeById();
                     break;
                 case "2":
                     Console.WriteLine("byLpn");
+                    analyzer.SelectNeedStringsForAnalyzeByLpn();
                     break;
                 case "3":
                     Console.WriteLine("Just");
+                    analyzer.SelectNeedStringsForAnalyze();
                     break;
             }
-            return selection;
         }
 
-    
-
-    public void DisplaySelectedStringForAnalyze()
+        public void DisplayStringForAnalyze()
         {
-            foreach (var s1 in analyzer.SelectNeedStringsForAnalyze())
+            foreach (var s in analyzer.AnalyzedLogs())
             {
-                Console.WriteLine(s1);
+                Console.WriteLine(s);
             }
-
         }
         public void Test()
         {
            analyzer.DeepAnalyzingLogs();
-        }
-        public void Test2()
-        {
-            Console.WriteLine("Test2");
-          //  analyzer.TestFindAllStringByConveyorId();
         }
     }
 }
