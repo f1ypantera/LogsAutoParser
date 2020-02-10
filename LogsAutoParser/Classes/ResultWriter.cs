@@ -9,7 +9,6 @@ namespace LogsAutoParser.Classes
         private readonly IDataMiner mineData;
         private readonly ISettingProvider settingProvider;
         private readonly IAnalyzer analyzer;
-
         public ResultWriter(IDataMiner mineData, ISettingProvider settingProvider, IReader reader, IAnalyzer analyzer)
         {
             this.mineData = mineData;

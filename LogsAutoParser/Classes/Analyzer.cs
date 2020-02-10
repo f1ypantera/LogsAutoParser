@@ -13,7 +13,6 @@ namespace LogsAutoParser.Classes
         private readonly IReader reader;
         private readonly IDataMiner dataMiner;
         List<string> analyzeLogs = new List<string>();
-
         public Analyzer(ISettingProvider settingProvider, IReader reader, IDataMiner dataMiner)
         {
             this.settingProvider = settingProvider;
