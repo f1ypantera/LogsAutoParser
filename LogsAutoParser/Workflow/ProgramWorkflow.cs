@@ -26,7 +26,7 @@ namespace LogsAutoParser.Workflow
            // workFlowReport.DisplayStringForAnalyze();
             //Console.ResetColor();
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\nTest  checking:");
+            Console.WriteLine("\nDeep analyzing:");
             Console.ResetColor();
             workFlowReport.Test();
             Console.ForegroundColor = ConsoleColor.Red;

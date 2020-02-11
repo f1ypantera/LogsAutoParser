@@ -12,6 +12,6 @@ namespace LogsAutoParser.Interfaces
         IEnumerable<string> SelectNeedStringsForAnalyzeById();
 
         IEnumerable<string> SelectNeedStringsForAnalyzeByLpn();
-      //  void DeepAnalyzingLogs();
+        void DeepAnalyzingLogs();
     }
 }

@@ -60,7 +60,7 @@ namespace LogsAutoParser.Classes
         }
         public void Test()
         {
-          // analyzer.DeepAnalyzingLogs();
+           analyzer.DeepAnalyzingLogs();
         }
     }
 }
