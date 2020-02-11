@@ -29,24 +29,24 @@ namespace LogsAutoParser.Classes
             
             string writePath = @"D:\\Projects\\LogsAutoParser\\Catalog2\\stringById.txt";
             var pathToStrings = reader.ReadLogsFromFiles(dataMiner.Catalog(settingProvider.GetPathToCatalog()));
-            Regex regex = new Regex(settingProvider.GetCartonID());
-            foreach (var oneString in pathToStrings)
-            {
-                MatchCollection matches = regex.Matches(oneString);
-
-                if (matches.Count > 0)
+                Regex regex = new Regex(settingProvider.GetCartonID());
+                foreach (var oneString in pathToStrings)
                 {
-                    foreach (Match match in matches)
+                    MatchCollection matches = regex.Matches(oneString);
+
+                    if (matches.Count > 0)
                     {
-                        // analyzeLogs.Add(match.Value);
-                        using (StreamWriter sw = File.AppendText(writePath))
+                        foreach (Match match in matches)
                         {
-                            sw.WriteLine(oneString);
+                            using (StreamWriter sw = File.AppendText(writePath))
+                            {
+                               //  analyzeLogs.Add(oneString);
+                                sw.WriteLine(oneString);
+                            }
                         }
                     }
                 }
-            }
-            return analyzeLogs;
+                return analyzeLogs;
         }
         public IEnumerable<string> SelectNeedStringsForAnalyzeByLpn()
         {
@@ -75,7 +75,7 @@ namespace LogsAutoParser.Classes
             var allStringFromFiles = reader.ReadLogsFromFiles(dataMiner.Catalog(settingProvider.GetPathToCatalog()));
             foreach (var regexTemplate in settingProvider.GetTemplateStrings())
             {
-                Regex regex = new Regex(regexTemplate, RegexOptions.Singleline);
+                Regex regex = new Regex(regexTemplate, RegexOptions.IgnorePatternWhitespace);
                 foreach (var oneString in allStringFromFiles)
                 {
                     MatchCollection matches = regex.Matches(oneString);
@@ -92,36 +92,36 @@ namespace LogsAutoParser.Classes
             }
             return analyzeLogs;
         }
-        public void DeepAnalyzingLogs()
-        {
-            bool flag;
-            foreach (var regexTemplate in settingProvider.GetTemplateStrings())
-            {
-                flag = false;
-                Regex regex = new Regex(regexTemplate, RegexOptions.Singleline);
-                foreach (var ss in analyzeLogs)
-                {
-                    MatchCollection matches = regex.Matches(ss);
+        //public void DeepAnalyzingLogs()
+        //{
+        //    bool flag;
+        //    foreach (var regexTemplate in settingProvider.GetTemplateStrings())
+        //    {
+        //        flag = false;
+        //        Regex regex = new Regex(regexTemplate, RegexOptions.Singleline);
+        //        foreach (var ss in analyzeLogs)
+        //        {
+        //            MatchCollection matches = regex.Matches(ss);
 
-                    if (matches.Count > 0)
-                    {
-                        flag = true;
-                        foreach (Match match in matches)
-                        {
-                            if (analyzeLogs.Contains(match.Value))
-                            {
-                                Console.WriteLine("Matched with template pattern - " + match.Value);
-                            }
+        //            if (matches.Count > 0)
+        //            {
+        //                flag = true;
+        //                foreach (Match match in matches)
+        //                {
+        //                    if (analyzeLogs.Contains(match.Value))
+        //                    {
+        //                        Console.WriteLine("Matched with template pattern - " + match.Value);
+        //                    }
 
-                        }
-                    }
-                    if (matches.Count == 0 && ss == analyzeLogs.Last() && regex == regex && flag == false)
-                    {
-                        Console.WriteLine("Does not matched with template pattern - " + regex);
-                    }
-                }
-            }
-        }
+        //                }
+        //            }
+        //            if (matches.Count == 0 && ss == analyzeLogs.Last() && regex == regex && flag == false)
+        //            {
+        //                Console.WriteLine("Does not matched with template pattern - " + regex);
+        //            }
+        //        }
+        //    }
+        //}
     }
 }
 
