@@ -51,7 +51,8 @@ namespace LogsAutoParser.Classes
         }
         public IEnumerable<string> SelectNeedStringsForAnalyzeByLpn()
         {
-           
+            string writePath = @"D:\\Projects\\LogsAutoParser\\OutPut\\byLPN.txt";
+            File.Delete(writePath);
             var pathToStrings = reader.ReadLogsFromFiles(dataMiner.Catalog(settingProvider.GetPathToCatalog()));
             Regex regex = new Regex(settingProvider.GetCartonsLpn());
             foreach (var oneString in pathToStrings)
@@ -60,9 +61,10 @@ namespace LogsAutoParser.Classes
 
                 if (matches.Count > 0)
                 {
-                    foreach (Match match in matches)
+                    using (StreamWriter sw = File.AppendText(writePath))
                     {
-                        analyzeLogs.Add(match.Value);
+                        analyzeLogs.Add(oneString);
+                        sw.WriteLine(oneString);
                     }
                 }
             }
@@ -74,7 +76,7 @@ namespace LogsAutoParser.Classes
             var allStringFromFiles = reader.ReadLogsFromFiles(dataMiner.Catalog(settingProvider.GetPathToCatalog()));
             foreach (var regexTemplate in settingProvider.GetTemplateStrings())
             {
-                Regex regex = new Regex(regexTemplate, RegexOptions.IgnorePatternWhitespace);
+                Regex regex = new Regex(regexTemplate);
                 foreach (var oneString in allStringFromFiles)
                 {
                     MatchCollection matches = regex.Matches(oneString);
@@ -83,7 +85,7 @@ namespace LogsAutoParser.Classes
                     {
                         foreach (Match match in matches)
                         {
-                            analyzeLogs.Add(match.Value);
+                            analyzeLogs.Add(oneString);
 
                         }
                     }
