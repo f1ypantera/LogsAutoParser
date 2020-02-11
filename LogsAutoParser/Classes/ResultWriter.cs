@@ -51,13 +51,13 @@ namespace LogsAutoParser.Classes
             }
         }
 
-        //public void DisplayStringForAnalyze()
-        //{
-        //    foreach (var s in analyzer.AnalyzedLogs())
-        //    {
-        //        Console.WriteLine(s);
-        //    }
-        //}
+        public void DisplayStringForAnalyze()
+        {
+            foreach (var s in analyzer.AnalyzedLogs())
+            {
+                Console.WriteLine(s);
+            }
+        }
         public void Test()
         {
           // analyzer.DeepAnalyzingLogs();

@@ -22,9 +22,9 @@ namespace LogsAutoParser.Workflow
             workFlowReport.DisplayFileNames();
             Console.ForegroundColor = ConsoleColor.Red;
             workFlowReport.DisplayCheckCriteria();
-           //s Console.WriteLine("\nSelected strings from log:");
+            //Console.WriteLine("\nSelected strings from log:");
            // workFlowReport.DisplayStringForAnalyze();
-            Console.ResetColor();
+            //Console.ResetColor();
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("\nTest  checking:");
             Console.ResetColor();

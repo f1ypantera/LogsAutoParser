@@ -27,7 +27,8 @@ namespace LogsAutoParser.Classes
         public IEnumerable<string> SelectNeedStringsForAnalyzeById()
         {
             
-            string writePath = @"D:\\Projects\\LogsAutoParser\\Catalog2\\stringById.txt";
+            string writePath = @"D:\\Projects\\LogsAutoParser\\Catalog2\\byID.txt";
+            File.Delete(writePath);
             var pathToStrings = reader.ReadLogsFromFiles(dataMiner.Catalog(settingProvider.GetPathToCatalog()));
                 Regex regex = new Regex(settingProvider.GetCartonID());
                 foreach (var oneString in pathToStrings)
@@ -40,7 +41,7 @@ namespace LogsAutoParser.Classes
                         {
                             using (StreamWriter sw = File.AppendText(writePath))
                             {
-                               //  analyzeLogs.Add(oneString);
+                                analyzeLogs.Add(oneString);
                                 sw.WriteLine(oneString);
                             }
                         }
