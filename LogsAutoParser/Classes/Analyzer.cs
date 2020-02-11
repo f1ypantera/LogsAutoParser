@@ -107,11 +107,7 @@ namespace LogsAutoParser.Classes
                         flag = true;
                         foreach (Match match in matches)
                         {
-                            if (analyzeLogs.Contains(match.Value))
-                            {
-                                Console.WriteLine("Matched with template pattern - " + match.Value);
-                            }
-
+                            Console.WriteLine("Matched with template pattern - " + match.Value);
                         }
                     }
                     if (matches.Count == 0 && ss == analyzeLogs.Last() && regex == regex && flag == false)
