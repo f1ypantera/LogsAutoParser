@@ -86,7 +86,6 @@ namespace LogsAutoParser.Classes
                         foreach (Match match in matches)
                         {
                             analyzeLogs.Add(oneString);
-
                         }
                     }
                 }
