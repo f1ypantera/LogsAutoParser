@@ -15,23 +15,14 @@ namespace LogsAutoParser.Workflow
         }
         public void Run()
         {
-            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Start analyzing..");
             Console.WriteLine("\nFile Names: ");
-            Console.ResetColor();
             workFlowReport.DisplayFileNames();
-            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("\nPlease,select 1-byID or 2-byLpn or 3-Overall strings");
             workFlowReport.DisplayCheckCriteria();
-            //Console.WriteLine("\nSelected strings from log:");
-           // workFlowReport.DisplayStringForAnalyze();
-            //Console.ResetColor();
-            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("\nDeep analyzing:");
-            Console.ResetColor();
-            workFlowReport.Test();
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\n-----------------");
-            Console.ResetColor();
+            workFlowReport.DisplayAnalyzedResult();
+
         }
     }
 }

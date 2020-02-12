@@ -7,8 +7,7 @@ namespace LogsAutoParser.Interfaces
     public interface IResultWriter
     {
         void DisplayFileNames();
-        void DisplayStringForAnalyze();
         void DisplayCheckCriteria();
-        void Test();
+        void DisplayAnalyzedResult();
     }
 }

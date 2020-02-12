@@ -9,8 +9,6 @@ namespace LogsAutoParser.Classes
         private readonly IDataMiner mineData;
         private readonly ISettingProvider settingProvider;
         private readonly IAnalyzer analyzer;
-        string pathToTxtById = @"D:\\Projects\\LogsAutoParser\\OutPut\\byID.txt";
-        string pathToTxtByLpn = @"D:\\Projects\\LogsAutoParser\\OutPut\\byLPN.txt";
         public ResultWriter(IDataMiner mineData, ISettingProvider settingProvider, IReader reader, IAnalyzer analyzer)
         {
             this.mineData = mineData;
@@ -29,7 +27,7 @@ namespace LogsAutoParser.Classes
 
         public void DisplayCheckCriteria()
         {
-            Console.WriteLine("\nPlease,select 1-byID or 2-byLpn or 3-Overall strings");
+           
             string selection = Console.ReadLine();
             while (selection != "2" && selection != "1")
             {
@@ -40,23 +38,15 @@ namespace LogsAutoParser.Classes
             {
                 case "1":
                     Console.WriteLine("byID");
-                    analyzer.SelectNeededStringsForAnalyze(pathToTxtById, settingProvider.GetCartonID());
+                    analyzer.SelectNeededStringsForAnalyze(settingProvider.GetPathToTxtById(), settingProvider.GetCartonID());
                     break;
                 case "2":
                     Console.WriteLine("byLpn");
-                    analyzer.SelectNeededStringsForAnalyze(pathToTxtByLpn, settingProvider.GetCartonsLpn());
+                    analyzer.SelectNeededStringsForAnalyze(settingProvider.GetPathToTxtByLpn(), settingProvider.GetCartonsLpn());
                     break;
             }
         }
-
-        public void DisplayStringForAnalyze()
-        {
-            foreach (var s in analyzer.AnalyzedLogs())
-            {
-                Console.WriteLine(s);
-            }
-        }
-        public void Test()
+        public void DisplayAnalyzedResult()
         {
            analyzer.DeepAnalyzingLogs();
         }

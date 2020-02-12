@@ -7,6 +7,8 @@ namespace LogsAutoParser.Interfaces
     public interface ISettingProvider
     {
         string GetPathToCatalog();
+        string GetPathToTxtById();
+        string GetPathToTxtByLpn();
         List<string> GetPatternListById();
         List<string> GetPatternListByLpn();
         string GetCartonID();
