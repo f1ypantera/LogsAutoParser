@@ -7,7 +7,7 @@ namespace LogsAutoParser
 {
     public class ConfigProvider : IConfigurationSectionHandler
     {
-        public string templateRegex { get; set; }
+        public string PatternRegex { get; set; }
         public object Create(object parent, object configContext, XmlNode section)
         {
             List<string> myConfigObject = new List<string>();
@@ -16,7 +16,7 @@ namespace LogsAutoParser
             {
                 foreach (XmlAttribute attrib in childNode.Attributes)
                 {
-                    myConfigObject.Add(templateRegex = attrib.Value);
+                    myConfigObject.Add(PatternRegex = attrib.Value);
                 }
             }
             return myConfigObject;

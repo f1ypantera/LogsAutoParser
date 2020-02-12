@@ -1,24 +1,27 @@
 ﻿using System;
 using System.IO;
 using LogsAutoParser.Interfaces;
+using Unity;
 
 namespace LogsAutoParser.Classes
 {
     class ResultWriter : IResultWriter
     {
-        private readonly IDataMiner mineData;
-        private readonly ISettingProvider settingProvider;
-        private readonly IAnalyzer analyzer;
-        public ResultWriter(IDataMiner mineData, ISettingProvider settingProvider, IReader reader, IAnalyzer analyzer)
+        private readonly IDataMiner _mineData;
+        private readonly ISettingProvider _settingProvider;
+        private readonly IAnalyzer _analyzer;
+
+        [InjectionConstructor]
+        public ResultWriter(IDataMiner mineData, ISettingProvider settingProvider, IAnalyzer analyzer)
         {
-            this.mineData = mineData;
-            this.settingProvider = settingProvider;
-            this.analyzer = analyzer;
+            this._mineData = mineData;
+            this._settingProvider = settingProvider;
+            this._analyzer = analyzer;
         }
 
         public void DisplayFileNames()
         {
-            foreach (var s in mineData.Catalog(settingProvider.GetPathToCatalog()))
+            foreach (var s in _mineData.Catalog(_settingProvider.GetPathToCatalog()))
             {
                 FileInfo fileInf = new FileInfo(s);
                 Console.WriteLine(fileInf.Name);
@@ -37,18 +40,16 @@ namespace LogsAutoParser.Classes
             switch (selection)
             {
                 case "1":
-                    Console.WriteLine("byID");
-                    analyzer.SelectNeededStringsForAnalyze(settingProvider.GetPathToTxtById(), settingProvider.GetCartonID());
+                    _analyzer.SelectNeededStringsForAnalyze(_settingProvider.GetPathToTxtById(), _settingProvider.GetCartonID());
                     break;
                 case "2":
-                    Console.WriteLine("byLpn");
-                    analyzer.SelectNeededStringsForAnalyze(settingProvider.GetPathToTxtByLpn(), settingProvider.GetCartonsLpn());
+                    _analyzer.SelectNeededStringsForAnalyze(_settingProvider.GetPathToTxtByLpn(), _settingProvider.GetCartonsLpn());
                     break;
             }
         }
         public void DisplayAnalyzedResult()
         {
-           analyzer.DeepAnalyzingLogs();
+            _analyzer.DeepAnalyzingLogs();
         }
     }
 }

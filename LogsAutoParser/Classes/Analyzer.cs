@@ -4,31 +4,29 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using LogsAutoParser.Interfaces;
+using Unity;
 
 namespace LogsAutoParser.Classes
 {
     class Analyzer : IAnalyzer
     {
-        private readonly ISettingProvider settingProvider;
-        private readonly IReader reader;
-        private readonly IDataMiner dataMiner;
+        private readonly ISettingProvider _settingProvider;
+        private readonly IReader _reader;
+        private readonly IDataMiner _dataMiner;
         List<string> analyzeLogs = new List<string>();
+
+        [InjectionConstructor]
         public Analyzer(ISettingProvider settingProvider, IReader reader, IDataMiner dataMiner)
         {
-            this.settingProvider = settingProvider;
-            this.reader = reader;
-            this.dataMiner = dataMiner;
-        }
-
-        public List<string> AnalyzedLogs()
-        {
-            return  analyzeLogs;
+            this._settingProvider = settingProvider;
+            this._reader = reader;
+            this._dataMiner = dataMiner;
         }
 
         public IEnumerable<string> SelectNeededStringsForAnalyze(string path,string criteria)
         {
             File.Delete(path);
-            var pathToStrings = reader.ReadLogsFromFiles(dataMiner.Catalog(settingProvider.GetPathToCatalog()));
+            var pathToStrings = _reader.ReadLogsFromFiles(_dataMiner.Catalog(_settingProvider.GetPathToCatalog()));
             Regex regex = new Regex(criteria);
             foreach (var oneString in pathToStrings)
             {
@@ -52,7 +50,7 @@ namespace LogsAutoParser.Classes
         public void DeepAnalyzingLogs()
         {
             bool flag;
-            foreach (var regexTemplate in settingProvider.GetPatternListById())
+            foreach (var regexTemplate in _settingProvider.GetPatternListById())
             {
                 flag = false;
                 Regex regex = new Regex(regexTemplate, RegexOptions.Singleline);

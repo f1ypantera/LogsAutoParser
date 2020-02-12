@@ -4,24 +4,24 @@ using Unity;
 
 namespace LogsAutoParser.Workflow
 {
-    public class ProgramWorkflow:IRun
+    class ProgramWorkflow:IRun
     {
-        private readonly IResultWriter workFlowReport;
+        private readonly IResultWriter _workFlowReport;
         
         [InjectionConstructor]
         public ProgramWorkflow(IResultWriter workFlowReport)
         {
-            this.workFlowReport = workFlowReport;
+            this._workFlowReport = workFlowReport;
         }
         public void Run()
         {
             Console.WriteLine("Start analyzing..");
             Console.WriteLine("\nFile Names: ");
-            workFlowReport.DisplayFileNames();
-            Console.WriteLine("\nPlease,select 1-byID or 2-byLpn or 3-Overall strings");
-            workFlowReport.DisplayCheckCriteria();
+            _workFlowReport.DisplayFileNames();
+            Console.WriteLine("\nPlease,select 1-byID or 2-byLpn");
+            _workFlowReport.DisplayCheckCriteria();
             Console.WriteLine("\nDeep analyzing:");
-            workFlowReport.DisplayAnalyzedResult();
+            _workFlowReport.DisplayAnalyzedResult();
 
         }
     }
