@@ -23,7 +23,7 @@ namespace LogsAutoParser.Classes
             this._dataMiner = dataMiner;
         }
 
-        public IEnumerable<string> SelectNeededStringsForAnalyze(string path,string criteria)
+        public IEnumerable<string> FilterRowsToAnalyze(string path,string criteria)
         {
             File.Delete(path);
             var pathToStrings = _reader.ReadLogsFromFiles(_dataMiner.Catalog(_settingProvider.GetPathToCatalog()));
@@ -47,13 +47,13 @@ namespace LogsAutoParser.Classes
             return analyzeLogs;
         }
 
-        public void DeepAnalyzingLogs()
+        public void DeepAnalyzingLogs(List<string> patternList)
         {
             bool flag;
-            foreach (var regexTemplate in _settingProvider.GetPatternListById())
+            foreach (var regexPattern in patternList)
             {
                 flag = false;
-                Regex regex = new Regex(regexTemplate, RegexOptions.Singleline);
+                Regex regex = new Regex(regexPattern, RegexOptions.Singleline);
                 foreach (var ss in analyzeLogs)
                 {
                     MatchCollection matches = regex.Matches(ss);

@@ -6,7 +6,7 @@ namespace LogsAutoParser.Interfaces
 {
     public interface IAnalyzer
     {
-        void DeepAnalyzingLogs();
-        IEnumerable<string> SelectNeededStringsForAnalyze(string path, string criteria);
+        void DeepAnalyzingLogs(List<string> patternList);
+        IEnumerable<string> FilterRowsToAnalyze(string path, string criteria);
     }
 }

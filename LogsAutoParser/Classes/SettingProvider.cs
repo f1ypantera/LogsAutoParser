@@ -20,6 +20,7 @@ namespace LogsAutoParser.Classes
         }
         public string GetPathToTxtById()
         {
+            
             return _pathToTxtById;
         }
         public string GetPathToTxtByLpn()

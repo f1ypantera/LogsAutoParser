@@ -19,18 +19,16 @@ namespace LogsAutoParser.Classes
             this._analyzer = analyzer;
         }
 
-        public void DisplayFileNames()
+        public void Display()
         {
+            Console.WriteLine("Start analyzing..");
+            Console.WriteLine("\nFile Names: ");
             foreach (var s in _mineData.Catalog(_settingProvider.GetPathToCatalog()))
             {
                 FileInfo fileInf = new FileInfo(s);
                 Console.WriteLine(fileInf.Name);
             }
-        }
-
-        public void DisplayCheckCriteria()
-        {
-           
+            Console.WriteLine("\nPlease,select 1-byID or 2-byLpn");
             string selection = Console.ReadLine();
             while (selection != "2" && selection != "1")
             {
@@ -40,16 +38,17 @@ namespace LogsAutoParser.Classes
             switch (selection)
             {
                 case "1":
-                    _analyzer.SelectNeededStringsForAnalyze(_settingProvider.GetPathToTxtById(), _settingProvider.GetCartonID());
+                    _analyzer.FilterRowsToAnalyze(_settingProvider.GetPathToTxtById(), _settingProvider.GetCartonID());
+                    Console.WriteLine("\nDeep analyzing:");
+                    _analyzer.DeepAnalyzingLogs(_settingProvider.GetPatternListById());
                     break;
                 case "2":
-                    _analyzer.SelectNeededStringsForAnalyze(_settingProvider.GetPathToTxtByLpn(), _settingProvider.GetCartonsLpn());
+                    _analyzer.FilterRowsToAnalyze(_settingProvider.GetPathToTxtByLpn(), _settingProvider.GetCartonsLpn());
+                    Console.WriteLine("\nDeep analyzing:");
+                    _analyzer.DeepAnalyzingLogs(_settingProvider.GetPatternListByLpn());
                     break;
             }
         }
-        public void DisplayAnalyzedResult()
-        {
-            _analyzer.DeepAnalyzingLogs();
-        }
+    
     }
 }
