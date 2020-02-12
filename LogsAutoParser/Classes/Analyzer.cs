@@ -24,78 +24,35 @@ namespace LogsAutoParser.Classes
         {
             return  analyzeLogs;
         }
-        public IEnumerable<string> SelectNeedStringsForAnalyzeById()
-        {
-            
-            string writePath = @"D:\\Projects\\LogsAutoParser\\OutPut\\byID.txt";
-            File.Delete(writePath);
-            var pathToStrings = reader.ReadLogsFromFiles(dataMiner.Catalog(settingProvider.GetPathToCatalog()));
-                Regex regex = new Regex(settingProvider.GetCartonID());
-                foreach (var oneString in pathToStrings)
-                {
-                    MatchCollection matches = regex.Matches(oneString);
 
-                    if (matches.Count > 0)
-                    {
-                        foreach (Match match in matches)
-                        {
-                            using (StreamWriter sw = File.AppendText(writePath))
-                            {
-                                analyzeLogs.Add(oneString);
-                                sw.WriteLine(oneString);
-                            }
-                        }
-                    }
-                }
-                return analyzeLogs;
-        }
-        public IEnumerable<string> SelectNeedStringsForAnalyzeByLpn()
+        public IEnumerable<string> SelectNeededStringsForAnalyze(string path,string criteria)
         {
-            string writePath = @"D:\\Projects\\LogsAutoParser\\OutPut\\byLPN.txt";
-            File.Delete(writePath);
+            File.Delete(path);
             var pathToStrings = reader.ReadLogsFromFiles(dataMiner.Catalog(settingProvider.GetPathToCatalog()));
-            Regex regex = new Regex(settingProvider.GetCartonsLpn());
+            Regex regex = new Regex(criteria);
             foreach (var oneString in pathToStrings)
             {
                 MatchCollection matches = regex.Matches(oneString);
 
                 if (matches.Count > 0)
                 {
-                    using (StreamWriter sw = File.AppendText(writePath))
+                    foreach (Match match in matches)
                     {
-                        analyzeLogs.Add(oneString);
-                        sw.WriteLine(oneString);
-                    }
-                }
-            }
-            return analyzeLogs;
-        }
-
-        public IEnumerable<string> SelectNeedStringsForAnalyze()
-        {
-            var allStringFromFiles = reader.ReadLogsFromFiles(dataMiner.Catalog(settingProvider.GetPathToCatalog()));
-            foreach (var regexTemplate in settingProvider.GetTemplateStrings())
-            {
-                Regex regex = new Regex(regexTemplate);
-                foreach (var oneString in allStringFromFiles)
-                {
-                    MatchCollection matches = regex.Matches(oneString);
-
-                    if (matches.Count > 0)
-                    {
-                        foreach (Match match in matches)
+                        using (StreamWriter sw = File.AppendText(path))
                         {
                             analyzeLogs.Add(oneString);
+                            sw.WriteLine(oneString);
                         }
                     }
                 }
             }
             return analyzeLogs;
         }
+
         public void DeepAnalyzingLogs()
         {
             bool flag;
-            foreach (var regexTemplate in settingProvider.GetTemplateStrings())
+            foreach (var regexTemplate in settingProvider.GetPatternListById())
             {
                 flag = false;
                 Regex regex = new Regex(regexTemplate, RegexOptions.Singleline);

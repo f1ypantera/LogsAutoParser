@@ -9,6 +9,8 @@ namespace LogsAutoParser.Classes
         private readonly IDataMiner mineData;
         private readonly ISettingProvider settingProvider;
         private readonly IAnalyzer analyzer;
+        string pathToTxtById = @"D:\\Projects\\LogsAutoParser\\OutPut\\byID.txt";
+        string pathToTxtByLpn = @"D:\\Projects\\LogsAutoParser\\OutPut\\byLPN.txt";
         public ResultWriter(IDataMiner mineData, ISettingProvider settingProvider, IReader reader, IAnalyzer analyzer)
         {
             this.mineData = mineData;
@@ -29,7 +31,7 @@ namespace LogsAutoParser.Classes
         {
             Console.WriteLine("\nPlease,select 1-byID or 2-byLpn or 3-Overall strings");
             string selection = Console.ReadLine();
-            while (selection != "3" && selection != "2" && selection != "1")
+            while (selection != "2" && selection != "1")
             {
                 Console.WriteLine("\nTry Again");
                 selection = Console.ReadLine();
@@ -38,15 +40,11 @@ namespace LogsAutoParser.Classes
             {
                 case "1":
                     Console.WriteLine("byID");
-                    analyzer.SelectNeedStringsForAnalyzeById();
+                    analyzer.SelectNeededStringsForAnalyze(pathToTxtById, settingProvider.GetCartonID());
                     break;
                 case "2":
                     Console.WriteLine("byLpn");
-                    analyzer.SelectNeedStringsForAnalyzeByLpn();
-                    break;
-                case "3":
-                    Console.WriteLine("Just");
-                    analyzer.SelectNeedStringsForAnalyze();
+                    analyzer.SelectNeededStringsForAnalyze(pathToTxtByLpn, settingProvider.GetCartonsLpn());
                     break;
             }
         }
