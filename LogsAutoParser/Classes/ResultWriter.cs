@@ -49,6 +49,5 @@ namespace LogsAutoParser.Classes
                     break;
             }
         }
-    
     }
 }
