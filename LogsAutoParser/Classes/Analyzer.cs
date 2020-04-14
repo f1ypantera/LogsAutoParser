@@ -54,9 +54,9 @@ namespace LogsAutoParser.Classes
             {
                 flag = false;
                 Regex regex = new Regex(regexPattern, RegexOptions.Singleline);
-                foreach (var ss in analyzeLogs)
+                foreach (var stringLog in analyzeLogs)
                 {
-                    MatchCollection matches = regex.Matches(ss);
+                    MatchCollection matches = regex.Matches(stringLog);
 
                     if (matches.Count > 0)
                     {
@@ -66,7 +66,7 @@ namespace LogsAutoParser.Classes
                             Console.WriteLine("Matched with template pattern - " + match.Value);
                         }
                     }
-                    if (matches.Count == 0 && ss == analyzeLogs.Last() && regex == regex && flag == false)
+                    if (matches.Count == 0 && stringLog == analyzeLogs.Last() && regex == regex && flag == false)
                     {
                         Console.WriteLine("Does not matched with template pattern - " + regex);
                     }

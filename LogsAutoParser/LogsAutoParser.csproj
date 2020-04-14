@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -11,8 +11,8 @@
 
   <ItemGroup>
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
-    <PackageReference Include="Unity" Version="5.11.3" />
-    <PackageReference Include="Unity.Abstractions" Version="5.11.3" />
+    <PackageReference Include="Unity" Version="5.11.4" />
+    <PackageReference Include="Unity.Abstractions" Version="5.11.4" />
     <PackageReference Include="Unity.Container" Version="5.11.5" />
     <PackageReference Include="Unity.Interception" Version="5.11.1" />
     <PackageReference Include="Unity.Mvc" Version="5.11.1" />
