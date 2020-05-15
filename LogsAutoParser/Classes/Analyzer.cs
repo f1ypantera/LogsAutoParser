@@ -23,7 +23,7 @@ namespace LogsAutoParser.Classes
             this._dataMiner = dataMiner;
         }
 
-        public IEnumerable<string> FilterRowsToAnalyze(string path,string criteria)
+        public IEnumerable<string> FilterRowsToAnalyze(string path, string criteria)
         {
             File.Delete(path);
             var pathToStrings = _reader.ReadLogsFromFiles(_dataMiner.Catalog(_settingProvider.GetPathToCatalog()));
@@ -44,10 +44,11 @@ namespace LogsAutoParser.Classes
                     }
                 }
             }
+
             return analyzeLogs;
         }
 
-        public void DeepAnalyzingLogs(List<string> patternList)
+        public void DeepAnalyzingLogsByID(List<string> patternList)
         {
             bool flag;
             foreach (var regexPattern in patternList)
@@ -66,7 +67,37 @@ namespace LogsAutoParser.Classes
                             Console.WriteLine("Matched with template pattern - " + match.Value);
                         }
                     }
-                    if (matches.Count == 0 && stringLog == analyzeLogs.Last() && regex == regex && flag == false)
+
+                    if (matches.Count == 0 && stringLog == analyzeLogs.Last() && flag == false)
+                    {
+                        Console.WriteLine("Does not matched with template pattern - " + regex);
+                    }
+                }
+            }
+
+        }
+
+        public void DeepAnalyzingLogsByLPN(List<string> patternList)
+        {
+            bool flag;
+            foreach (var regexPattern in patternList)
+            {
+                flag = false;
+                Regex regex = new Regex(regexPattern, RegexOptions.Singleline);
+                foreach (var stringLog in analyzeLogs)
+                {
+                    MatchCollection matches = regex.Matches(stringLog);
+
+                    if (matches.Count > 0)
+                    {
+                        flag = true;
+                        foreach (Match match in matches)
+                        {
+                            Console.WriteLine("Matched with template pattern - " + match.Value);
+                        }
+                    }
+
+                    if (matches.Count == 0 && stringLog == analyzeLogs.Last() && flag == false)
                     {
                         Console.WriteLine("Does not matched with template pattern - " + regex);
                     }

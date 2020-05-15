@@ -40,12 +40,12 @@ namespace LogsAutoParser.Classes
                 case "1":
                     _analyzer.FilterRowsToAnalyze(_settingProvider.GetPathToTxtById(), _settingProvider.GetCartonID());
                     Console.WriteLine("\nDeep analyzing:");
-                    _analyzer.DeepAnalyzingLogs(_settingProvider.GetPatternListById());
+                    _analyzer.DeepAnalyzingLogsByID(_settingProvider.GetPatternListById());
                     break;
                 case "2":
                     _analyzer.FilterRowsToAnalyze(_settingProvider.GetPathToTxtByLpn(), _settingProvider.GetCartonsLpn());
                     Console.WriteLine("\nDeep analyzing:");
-                    _analyzer.DeepAnalyzingLogs(_settingProvider.GetPatternListByLpn());
+                    _analyzer.DeepAnalyzingLogsByLPN(_settingProvider.GetPatternListByLpn());
                     break;
             }
         }
