@@ -82,18 +82,93 @@ namespace LogsAutoParser.Classes
             bool flag;
             foreach (var regexPattern in patternList)
             {
+                int i = 1;
                 flag = false;
                 Regex regex = new Regex(regexPattern, RegexOptions.Singleline);
                 foreach (var stringLog in analyzeLogs)
                 {
+                 
                     MatchCollection matches = regex.Matches(stringLog);
 
+                    
                     if (matches.Count > 0)
                     {
                         flag = true;
+
                         foreach (Match match in matches)
                         {
-                            Console.WriteLine("Matched with template pattern - " + match.Value);
+                            
+                            if (match.Value == "Received AddPallet ParentLPN:")
+                            {
+                                Console.WriteLine("Matched with template pattern - " + match.Value);
+                                if (i == 1)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("Step was completed");
+                                    Console.ResetColor();
+                                }
+
+                            }
+
+                            if (match.Value == "InboundConveyorClient.NotifyInboundCase:")
+                            {
+                                Console.WriteLine("Matched with template pattern - " + match.Value);
+                                i++;
+                                if (i == 10)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("Step was completed");
+                                    Console.ResetColor();
+                                }
+                            }
+
+                            if (match.Value == "InboundCartonFactory.CreateInboundCarton:")
+                            {
+                                Console.WriteLine("Matched with template pattern - " + match.Value);
+                                i++;
+                                if (i == 10)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("Step was completed");
+                                    Console.ResetColor();
+                                }
+                            }
+
+                            if (match.Value == "Added inbound carton to queue:")
+                            {
+                                Console.WriteLine("Matched with template pattern - " + match.Value);
+                                i++;
+                                if (i == 10)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("Step was completed");
+                                    Console.ResetColor();
+                                }
+                            }
+
+                            if (match.Value == "Removed inbound carton from queue:")
+                            {
+                                Console.WriteLine("Matched with template pattern - " + match.Value);
+                                i++;
+                                if (i == 10)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("Step was completed");
+                                    Console.ResetColor();
+                                }
+                            }
+
+                            if (match.Value == "Handling DepalletizationComplete:")
+                            {
+                                Console.WriteLine("Matched with template pattern - " + match.Value);
+                                if (i == 1)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("Step was completed");
+                                    Console.ResetColor();
+                                }
+                            }
+
                         }
                     }
 
