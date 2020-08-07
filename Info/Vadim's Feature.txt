@@ -1,0 +1,19 @@
+Требования к функционалу:
+Приложение на основании логов SystemManager показывает продвижение по AutoInbound процессу следующих сущностей:
+1. InboundCarton :
+  а) Carton accepted by Axium - c момента получения SM-ом NotifyInboundCase от Axium до получения NotifyCartonPutaway от SRE (см http://intranet.symbotic.corp/display/SM/Auto+Inbound)
+  б) Carton rejected by Axium - информацию по событию от Axium NotifyCaseRejectedWithMultipleRejections
+2. InboundPallet/LPN:  c момента получения SM-ом NotifyPalletScanned от Axium до отправки SM-ом NotifyPalletStored агенту.
+
+Любое отклонение от нормального флоу четко видно в результирующем файле
+
+Реализовать гибкую возможность поиска по имеющемуся полю, например:
+1.Статуc коробки по CustomerCartonRef
+2.Статус всех коробок для определенного LPN
+
+Требования к имплементации:
+
+1. Слабосвязанная архитектура (инетерфейсы в конструкторе класса)
+2. Резолвить зависимости с помощью DI контейнера Unity
+3. Покрыть все public методы юнит тестами
+4. Настройки хранить в AppConfig файле, c возможностью безболезненной миграции в БД в будущем (абстрактный IRepository)
