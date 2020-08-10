@@ -13,7 +13,7 @@ namespace LogsAutoParser.Classes
         private readonly ISettingProvider _settingProvider;
         private readonly IReader _reader;
         private readonly IDataMiner _dataMiner;
-        List<string> analyzeLogs = new List<string>();
+        private readonly List<string> _analyzeLogs = new List<string>();
 
         [InjectionConstructor]
         public Analyzer(ISettingProvider settingProvider, IReader reader, IDataMiner dataMiner)
@@ -38,14 +38,14 @@ namespace LogsAutoParser.Classes
                     {
                         using (StreamWriter sw = File.AppendText(path))
                         {
-                            analyzeLogs.Add(oneString);
+                            _analyzeLogs.Add(oneString);
                             sw.WriteLine(oneString);
                         }
                     }
                 }
             }
 
-            return analyzeLogs;
+            return _analyzeLogs;
         }
 
         public void DeepAnalyzingLogsByID(List<string> patternList)
@@ -55,7 +55,7 @@ namespace LogsAutoParser.Classes
             {
                 flag = false;
                 Regex regex = new Regex(regexPattern, RegexOptions.Singleline);
-                foreach (var stringLog in analyzeLogs)
+                foreach (var stringLog in _analyzeLogs)
                 {
                     MatchCollection matches = regex.Matches(stringLog);
 
@@ -68,7 +68,7 @@ namespace LogsAutoParser.Classes
                         }
                     }
 
-                    if (matches.Count == 0 && stringLog == analyzeLogs.Last() && flag == false)
+                    if (matches.Count == 0 && stringLog == _analyzeLogs.Last() && flag == false)
                     {
                         Console.WriteLine("Does not matched with template pattern - " + regex);
                     }
@@ -85,7 +85,7 @@ namespace LogsAutoParser.Classes
                 int i = 1;
                 flag = false;
                 Regex regex = new Regex(regexPattern, RegexOptions.Singleline);
-                foreach (var stringLog in analyzeLogs)
+                foreach (var stringLog in _analyzeLogs)
                 {
                  
                     MatchCollection matches = regex.Matches(stringLog);
@@ -172,7 +172,7 @@ namespace LogsAutoParser.Classes
                         }
                     }
 
-                    if (matches.Count == 0 && stringLog == analyzeLogs.Last() && flag == false)
+                    if (matches.Count == 0 && stringLog == _analyzeLogs.Last() && flag == false)
                     {
                         Console.WriteLine("Does not matched with template pattern - " + regex);
                     }
