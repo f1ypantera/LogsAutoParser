@@ -10,8 +10,6 @@ namespace LogsAutoParser.Classes
         private readonly string _pathToCatalog = ConfigurationManager.AppSettings["pathToCatalog"];
         private readonly string _pathToTxtById = ConfigurationManager.AppSettings["pathToTxtById"];
         private readonly string _pathToTxtByLpn = ConfigurationManager.AppSettings["pathToTxtByLpn"];
-        private readonly string _cartonId = ConfigurationManager.AppSettings["cartonId"];
-        private readonly string _lpnCartons = ConfigurationManager.AppSettings["lpnCartons"];
         private readonly List<string> _patternListById = ConfigurationManager.GetSection("patternListById") as List<string>;
         private readonly List<string> _patternListByLpn = ConfigurationManager.GetSection("patternListByLpn") as List<string>;
         public string GetPathToCatalog()
@@ -35,14 +33,6 @@ namespace LogsAutoParser.Classes
         public List<string> GetPatternListByLpn()
         {
             return _patternListByLpn.ToList();
-        }
-        public string GetCartonID()
-        {
-            return _cartonId;
-        }
-        public string GetCartonsLpn()
-        {
-            return _lpnCartons;
         }
     }
 }

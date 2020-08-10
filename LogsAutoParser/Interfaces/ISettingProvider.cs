@@ -11,7 +11,5 @@ namespace LogsAutoParser.Interfaces
         string GetPathToTxtByLpn();
         List<string> GetPatternListById();
         List<string> GetPatternListByLpn();
-        string GetCartonID();
-        string GetCartonsLpn();
     }
 }
