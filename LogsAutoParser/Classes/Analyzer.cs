@@ -78,11 +78,11 @@ namespace LogsAutoParser.Classes
 
         public void DeepAnalyzingLogsByLPN(List<string> patternList)
         {
-            bool flag;
+            bool finishAnalyze = false;
             foreach (var regexPattern in patternList)
             {
-                int i = 1;
-                flag = false;
+                int counter = 1;
+              
                 Regex regex = new Regex(regexPattern, RegexOptions.Singleline);
                 foreach (var stringLog in _analyzedLogs)
                 {
@@ -92,7 +92,7 @@ namespace LogsAutoParser.Classes
                     
                     if (matches.Count > 0)
                     {
-                        flag = true;
+                        finishAnalyze = true;
 
                         foreach (Match match in matches)
                         {
@@ -100,7 +100,7 @@ namespace LogsAutoParser.Classes
                             if (match.Value == "Received AddPallet ParentLPN:")
                             {
                                 Console.WriteLine("Matched with template pattern - " + match.Value);
-                                if (i == 1)
+                                if (counter == 1)
                                 {
                                     Console.ForegroundColor = ConsoleColor.Red;
                                     Console.WriteLine("Step was completed");
@@ -112,8 +112,8 @@ namespace LogsAutoParser.Classes
                             if (match.Value == "InboundConveyorClient.NotifyInboundCase:")
                             {
                                 Console.WriteLine("Matched with template pattern - " + match.Value);
-                                i++;
-                                if (i == 10)
+                                counter++;
+                                if (counter == 10)
                                 {
                                     Console.ForegroundColor = ConsoleColor.Red;
                                     Console.WriteLine("Step was completed");
@@ -124,8 +124,8 @@ namespace LogsAutoParser.Classes
                             if (match.Value == "InboundCartonFactory.CreateInboundCarton:")
                             {
                                 Console.WriteLine("Matched with template pattern - " + match.Value);
-                                i++;
-                                if (i == 10)
+                                counter++;
+                                if (counter == 10)
                                 {
                                     Console.ForegroundColor = ConsoleColor.Red;
                                     Console.WriteLine("Step was completed");
@@ -136,8 +136,8 @@ namespace LogsAutoParser.Classes
                             if (match.Value == "Added inbound carton to queue:")
                             {
                                 Console.WriteLine("Matched with template pattern - " + match.Value);
-                                i++;
-                                if (i == 10)
+                                counter++;
+                                if (counter == 10)
                                 {
                                     Console.ForegroundColor = ConsoleColor.Red;
                                     Console.WriteLine("Step was completed");
@@ -148,8 +148,8 @@ namespace LogsAutoParser.Classes
                             if (match.Value == "Removed inbound carton from queue:")
                             {
                                 Console.WriteLine("Matched with template pattern - " + match.Value);
-                                i++;
-                                if (i == 10)
+                                counter++;
+                                if (counter == 10)
                                 {
                                     Console.ForegroundColor = ConsoleColor.Red;
                                     Console.WriteLine("Step was completed");
@@ -160,7 +160,7 @@ namespace LogsAutoParser.Classes
                             if (match.Value == "Handling DepalletizationComplete:")
                             {
                                 Console.WriteLine("Matched with template pattern - " + match.Value);
-                                if (i == 1)
+                                if (counter == 1)
                                 {
                                     Console.ForegroundColor = ConsoleColor.Red;
                                     Console.WriteLine("Step was completed");
@@ -171,7 +171,7 @@ namespace LogsAutoParser.Classes
                         }
                     }
 
-                    if (matches.Count == 0 && stringLog == _analyzedLogs.Last() && flag == false)
+                    if (matches.Count == 0 && stringLog == _analyzedLogs.Last() && finishAnalyze == false)
                     {
                         Console.WriteLine("Does not matched with template pattern - " + regex);
                     }
