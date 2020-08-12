@@ -41,15 +41,15 @@ namespace LogsAutoParser.Classes
                     Console.WriteLine("Input case Id");
                     string caseId = Console.ReadLine();
                     _analyzer.FilterRowsToAnalyze(_settingProvider.GetPathToTxtById(), caseId);
-                    Console.WriteLine("\nDeep analyzing:");
-                    _analyzer.DeepAnalyzingLogsByID(_settingProvider.GetPatternListById());
+                    Console.WriteLine("\nAnalyzed:");
+                    _analyzer.DeepAnalyzingLogsById(_settingProvider.GetPatternListById());
                     break;
                 case "2":
                     Console.WriteLine("Input lpn Id");
                     string lpnId = Console.ReadLine();
                     _analyzer.FilterRowsToAnalyze(_settingProvider.GetPathToTxtByLpn(), lpnId);
-                    Console.WriteLine("\nDeep analyzing:");
-                    _analyzer.DeepAnalyzingLogsByLPN(_settingProvider.GetPatternListByLpn());
+                    Console.WriteLine("\nAnalyzed:");
+                    _analyzer.DeepAnalyzingLogsById(_settingProvider.GetPatternListByLpn());
                     break;
             }
         }

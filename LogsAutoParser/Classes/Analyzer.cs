@@ -23,7 +23,7 @@ namespace LogsAutoParser.Classes
             this._dataMiner = dataMiner;
         }
 
-        public IEnumerable<string> FilterRowsToAnalyze(string path, string criteria)
+        public void FilterRowsToAnalyze(string path, string criteria)
         {
             File.Delete(path);
             var pathToStrings = _reader.ReadLogsFromFiles(_dataMiner.Catalog(_settingProvider.GetPathToCatalog()));
@@ -45,10 +45,9 @@ namespace LogsAutoParser.Classes
                 }
             }
 
-            return _analyzedLogs;
         }
 
-        public void DeepAnalyzingLogsByID(List<string> patternList)
+        public void DeepAnalyzingLogsById(List<string> patternList)
         {
             bool finishAnalyze = false; 
             foreach (var regexPattern in patternList)
@@ -74,109 +73,6 @@ namespace LogsAutoParser.Classes
                 }
             }
 
-        }
-
-        public void DeepAnalyzingLogsByLPN(List<string> patternList)
-        {
-            bool finishAnalyze = false;
-            foreach (var regexPattern in patternList)
-            {
-                int counter = 1;
-              
-                Regex regex = new Regex(regexPattern, RegexOptions.Singleline);
-                foreach (var stringLog in _analyzedLogs)
-                {
-                 
-                    MatchCollection matches = regex.Matches(stringLog);
-
-                    
-                    if (matches.Count > 0)
-                    {
-                        finishAnalyze = true;
-
-                        foreach (Match match in matches)
-                        {
-                            
-                            if (match.Value == "Received AddPallet ParentLPN:")
-                            {
-                                Console.WriteLine("Matched with template pattern - " + match.Value);
-                                if (counter == 1)
-                                {
-                                    Console.ForegroundColor = ConsoleColor.Red;
-                                    Console.WriteLine("Step was completed");
-                                    Console.ResetColor();
-                                }
-
-                            }
-
-                            if (match.Value == "InboundConveyorClient.NotifyInboundCase:")
-                            {
-                                Console.WriteLine("Matched with template pattern - " + match.Value);
-                                counter++;
-                                if (counter == 10)
-                                {
-                                    Console.ForegroundColor = ConsoleColor.Red;
-                                    Console.WriteLine("Step was completed");
-                                    Console.ResetColor();
-                                }
-                            }
-
-                            if (match.Value == "InboundCartonFactory.CreateInboundCarton:")
-                            {
-                                Console.WriteLine("Matched with template pattern - " + match.Value);
-                                counter++;
-                                if (counter == 10)
-                                {
-                                    Console.ForegroundColor = ConsoleColor.Red;
-                                    Console.WriteLine("Step was completed");
-                                    Console.ResetColor();
-                                }
-                            }
-
-                            if (match.Value == "Added inbound carton to queue:")
-                            {
-                                Console.WriteLine("Matched with template pattern - " + match.Value);
-                                counter++;
-                                if (counter == 10)
-                                {
-                                    Console.ForegroundColor = ConsoleColor.Red;
-                                    Console.WriteLine("Step was completed");
-                                    Console.ResetColor();
-                                }
-                            }
-
-                            if (match.Value == "Removed inbound carton from queue:")
-                            {
-                                Console.WriteLine("Matched with template pattern - " + match.Value);
-                                counter++;
-                                if (counter == 10)
-                                {
-                                    Console.ForegroundColor = ConsoleColor.Red;
-                                    Console.WriteLine("Step was completed");
-                                    Console.ResetColor();
-                                }
-                            }
-
-                            if (match.Value == "Handling DepalletizationComplete:")
-                            {
-                                Console.WriteLine("Matched with template pattern - " + match.Value);
-                                if (counter == 1)
-                                {
-                                    Console.ForegroundColor = ConsoleColor.Red;
-                                    Console.WriteLine("Step was completed");
-                                    Console.ResetColor();
-                                }
-                            }
-
-                        }
-                    }
-
-                    if (matches.Count == 0 && stringLog == _analyzedLogs.Last() && finishAnalyze == false)
-                    {
-                        Console.WriteLine("Does not matched with template pattern - " + regex);
-                    }
-                }
-            }
         }
     }
 }
